@@ -25,29 +25,6 @@ public class Main {
         Truck hyundai = new Truck("Hyundai", "HD78", 3.9, TypeOfLiftingCapacity.N3);
         Truck mercedesBenz = new Truck("Mercedes-Benz", "Atego", 4.3, TypeOfLiftingCapacity.N1);
 
-          service(
-                vector, kavz, paz, maz,
-                audi, bmw, kia, lada,
-                volvo, man, hyundai, mercedesBenz
-
-        );
-
-       private static void service (Transport...transports){
-            for (Transport transport : transports) {
-                serviceTransport (transport); {
-
-                }
-            }
-        }
-        private static void serviceTransport (Transport transport){
-            try {
-                if (!transport.service()) {
-                    throw new RuntimeException("Автомобиль" + transport.getBrand + transport.getModel + " не прошел диагностику");
-                } catch(RuntimeException e){
-                    System.out.println(e.getMessage());
-                }
-            }
-        }
 
         Driver<MotorCar> sergei = new Driver<>("Зайцев Сергей Викторович", "категория B", 10, audi);
         Driver<Bus> alexei = new Driver<>("Белочкин Алексей Иванович", "Категория D", 8, vector);
@@ -70,6 +47,29 @@ public class Main {
         vadim.stop(volvo);
         volvo.printType();
 
+        service(
+                vector, kavz, paz, maz,
+                audi, bmw, kia, lada,
+                volvo, man, hyundai, mercedesBenz
+
+        );
+
+    }
+    private static void service(Transport... transports) {
+        for (Transport transport : transports) {
+            serviceTransport(transport);
+            {
+
+            }
+        }
+    }
+    private static void serviceTransport(Transport transport) {
+try {
+
+        throw new RuntimeException("Автомобиль" + transport.getBrand() + transport.getModel() + " не прошел диагностику");
+    } catch(RuntimeException e){
+        System.out.println(e.getMessage());
+    }
 
     }
 }
