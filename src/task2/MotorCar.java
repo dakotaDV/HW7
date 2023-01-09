@@ -49,6 +49,11 @@ public class MotorCar extends Transport implements Сompeting {
         return Math.random() > 0.7;
     }
 
+    @Override
+    public void repair() {
+        System.out.println("Машина " + getBrand() + getModel() + " починена!");
+    }
+
 
     @Override
     public void pitStop() {

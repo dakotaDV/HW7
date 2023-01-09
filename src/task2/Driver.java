@@ -71,4 +71,15 @@ public class Driver <T extends Transport > {
         System.out.println("Заправиться на " + transport.getBrand() + " " + transport.getModel());
 
     }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "name='" + name + '\'' +
+                ", driverLicense='" + driverLicense + '\'' +
+                ", experience=" + experience +
+                ", car=" + car +
+                '}';
+    }
 }
+
