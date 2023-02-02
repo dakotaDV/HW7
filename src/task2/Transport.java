@@ -1,8 +1,6 @@
 package task2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public  abstract class Transport {
 
@@ -10,9 +8,10 @@ public  abstract class Transport {
     protected String brand;
     protected String model;
     protected double engineVolume;
-    protected final List<Driver<?>> drivers = new ArrayList<>();
-    protected final List<Mechanic<?>> mechanics = new ArrayList<>();
-    protected final List<Sponsor> sponsors = new ArrayList<>();
+    protected static Set<Transport> transportSet = new HashSet<>();
+    protected final Set<Driver<?>> drivers = new HashSet<>();
+    protected final Set<Mechanic<?>> mechanics = new HashSet<>();
+    protected final Set<Sponsor> sponsors = new HashSet();
     public Transport(String brand, String model, double engineVolume) {
         setBrand(brand);
         setModel(model);
@@ -84,16 +83,33 @@ public  abstract class Transport {
     public abstract boolean service();
     public abstract void repair ();
 
-    public List<Driver<?>> getDrivers() {
+    public static Set<Transport> getTransportSet() {
+        return transportSet;
+    }
+
+    public Set<Driver<?>> getDrivers() {
         return drivers;
     }
 
-    public List<Mechanic<?>> getMechanics() {
+    public Set<Mechanic<?>> getMechanics() {
         return mechanics;
     }
 
-    public List<Sponsor> getSponsors() {
+    public Set<Sponsor> getSponsors() {
         return sponsors;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport transport = (Transport) o;
+        return Double.compare(transport.engineVolume, engineVolume) == 0 && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(drivers, transport.drivers) && Objects.equals(mechanics, transport.mechanics) && Objects.equals(sponsors, transport.sponsors);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, engineVolume, drivers, mechanics, sponsors);
     }
 }
 
